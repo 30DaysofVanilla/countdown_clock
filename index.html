@@ -6,11 +6,17 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
   </head>
   <body>
+    <div class="navbar">
+      <button data-time="15m">15min</button>
+      <button data-time="1hr">lunchhh</button>
+      <button data-time="2hr">2hour</button>
+    </div>
     <form id="timerForm">
-      <input id="timerInput" placeholder="How much time?"></input>
+      <input id="timerInput" placeholder="How much time?" type="number"></input>
     </form>
     <button id="startTimer">Start timer</button>
     <button id="stopTimer">Stop timer</button>
+    <div id="timerDuration">Duration</div>
     <div id='timer'></div>
     <script src='index.js' type="text/javascript"></script>
   </body>

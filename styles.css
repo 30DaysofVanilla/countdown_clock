@@ -4,3 +4,25 @@ html {
 *, *:before, *:after {
   box-sizing: inherit;
 }
+
+.navbar{
+  display: flex;
+  justify-content: space-around;
+  background-color: #fafafa;
+  height: 25px;
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+.navbar button {
+  margin: auto;
+  height: 100%;
+  width: 100px;
+}
+
+#timer{
+  border: 1px solid black;
+  height: 300px;
+  width: 500px;
+
+}
