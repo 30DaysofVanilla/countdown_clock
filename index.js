@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('timerForm');
   const input = document.getElementById('timerInput');
   let timerDuration;
+  [].map.call(document.getElementsByClassName('time'), (el) => el.innerHTML = '00');
 
   function startTimer(){
     window.timerInterval = setInterval(()=>{
@@ -20,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function stopTimer(interval){
     return window.clearInterval(interval);
   }
-  //convert 1, 2, .15 ---> 01:00:00, 02:00:00, 00:15:00,
+
   function convertTime(time){
     time = time.includes('.') ? `00${time}` : time;
     const [hour = '00', min = '00'] = time.split('.');
@@ -40,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const duration = e.srcElement.getAttribute('data-time');
     const time = duration.includes('m') ?
     `.${duration.replace(/[^0-9]/g,'')}` : `${duration.replace(/[^0-9]/g,'')}`;
-    console.log('convertTime evaluates to', convertTime(time));
+    timerDuration = conertTime(time);
     })
 
 });

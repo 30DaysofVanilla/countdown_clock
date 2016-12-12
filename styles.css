@@ -1,6 +1,7 @@
 html {
   box-sizing: border-box;
 }
+
 *, *:before, *:after {
   box-sizing: inherit;
 }
@@ -24,5 +25,8 @@ html {
   border: 1px solid black;
   height: 300px;
   width: 500px;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 8rem;
 }

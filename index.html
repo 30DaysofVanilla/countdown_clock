@@ -11,13 +11,15 @@
       <button data-time="1hr">lunchhh</button>
       <button data-time="2hr">2hour</button>
     </div>
-    <form id="timerForm">
-      <input id="timerInput" placeholder="How much time?" type="number"></input>
-    </form>
     <button id="startTimer">Start timer</button>
     <button id="stopTimer">Stop timer</button>
-    <div id="timerDuration">Duration</div>
-    <div id='timer'></div>
+    <div id="timer">
+      <span id="hour" class='time'></span>
+      <span>:</span>
+      <span id="minute" class='time'></span>
+      <span>:</span>
+      <span id="second" class='time'></span>
+    </div>
     <script src='index.js' type="text/javascript"></script>
   </body>
 </html>
