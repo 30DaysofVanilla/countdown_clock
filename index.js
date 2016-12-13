@@ -18,28 +18,27 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   function startTimer(){
     window.timerInterval = setInterval(()=>{
-      isTimerOver(timerDuration);
       if (timerDuration.sec === '00' || timerDuration.sec == '01' ){
+        isTimerOver(timerDuration);
         timerDuration.sec = '59';
-        if (timerDuration.min == '00'){
+        if (timerDuration.min == '00' && timerDuration.hour > 0){
             timerDuration.min = '59';
-            if (timerDuration.hour > 0) timerDuration.hour -= 1;
+            timerDuration.hour -= 1;
+            document.getElementById('hour').innerHTML = timerDuration.hour;
         } else {
           timerDuration.min -= 1;
         }
         if (timerDuration.min.toString().length === 1){
           timerDuration.min = padWithZeroes(timerDuration.min);
         }
-        document.getElementById('second').innerHTML = timerDuration.sec;
-        document.getElementById('minute').innerHTML = timerDuration.min;
-        document.getElementById('hour').innerHTML = timerDuration.hour;
       } else {
         timerDuration.sec -= 1;
         if (timerDuration.sec.toString().length === 1){
           timerDuration.sec = padWithZeroes(timerDuration.sec);
         }
-        document.getElementById('second').innerHTML = timerDuration.sec;
       }
+      document.getElementById('second').innerHTML = timerDuration.sec;
+      document.getElementById('minute').innerHTML = timerDuration.min;
     },1000)
   }
 
