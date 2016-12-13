@@ -2,13 +2,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const button = document.getElementById('startTimer');
   const stopButton = document.getElementById('stopTimer');
   const timer = document.getElementById('timer');
-  const form = document.getElementById('timerForm');
-  const input = document.getElementById('timerInput');
   let timerDuration;
 
-  function padWithZeroes(num){
-    num = '0' + num;
-    return num;
+  function padWithZeroes(timerObj){
+    for (let time in timerObj){
+      if (timerObj[time].toString().length === 1){
+        timerObj[time] = '0' + timerObj[time];
+      }
+    }
+    return timerObj;
   }
   function isTimerOver(timerObj){
     if (Object.keys(timerObj).every((time) => timerObj[time] === '00')){
@@ -24,22 +26,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (timerDuration.min == '00' && timerDuration.hour > 0){
             timerDuration.min = '59';
             timerDuration.hour -= 1;
-            document.getElementById('hour').innerHTML = timerDuration.hour;
         } else {
           timerDuration.min -= 1;
         }
-        if (timerDuration.min.toString().length === 1){
-          timerDuration.min = padWithZeroes(timerDuration.min);
-        }
       } else {
         timerDuration.sec -= 1;
-        if (timerDuration.sec.toString().length === 1){
-          timerDuration.sec = padWithZeroes(timerDuration.sec);
-        }
       }
+      padWithZeroes(timerDuration);
       document.getElementById('second').innerHTML = timerDuration.sec;
       document.getElementById('minute').innerHTML = timerDuration.min;
-    },1000)
+      document.getElementById('hour').innerHTML = timerDuration.hour;
+    },900)
   }
 
   function stopTimer(interval){
