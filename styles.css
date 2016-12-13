@@ -30,3 +30,9 @@ html {
   align-items: center;
   font-size: 8rem;
 }
+
+#timer .done{
+  background-color: red;
+  transform: scale(1,10);
+  font-size: 200px;
+}

@@ -5,15 +5,40 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('timerForm');
   const input = document.getElementById('timerInput');
   let timerDuration;
-  [].map.call(document.getElementsByClassName('time'), (el) => el.innerHTML = '00');
 
+  function padWithZeroes(num){
+    num = '0' + num;
+    return num;
+  }
+  function isTimerOver(timerObj){
+    if (Object.keys(timerObj).every((time) => timerObj[time] === '00')){
+      stopTimer(window.timerInterval);
+      timer.classList.add('done');
+    }
+  }
   function startTimer(){
     window.timerInterval = setInterval(()=>{
-      if (timerDuration !== 0){
-        timerDuration -= 1;
-        timer.innerHTML = timerDuration
+      isTimerOver(timerDuration);
+      if (timerDuration.sec === '00' || timerDuration.sec == '01' ){
+        timerDuration.sec = '59';
+        if (timerDuration.min == '00'){
+            timerDuration.min = '59';
+            if (timerDuration.hour > 0) timerDuration.hour -= 1;
+        } else {
+          timerDuration.min -= 1;
+        }
+        if (timerDuration.min.toString().length === 1){
+          timerDuration.min = padWithZeroes(timerDuration.min);
+        }
+        document.getElementById('second').innerHTML = timerDuration.sec;
+        document.getElementById('minute').innerHTML = timerDuration.min;
+        document.getElementById('hour').innerHTML = timerDuration.hour;
       } else {
-        stopTimer(window.timerInterval);
+        timerDuration.sec -= 1;
+        if (timerDuration.sec.toString().length === 1){
+          timerDuration.sec = padWithZeroes(timerDuration.sec);
+        }
+        document.getElementById('second').innerHTML = timerDuration.sec;
       }
     },1000)
   }
@@ -41,7 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const duration = e.srcElement.getAttribute('data-time');
     const time = duration.includes('m') ?
     `.${duration.replace(/[^0-9]/g,'')}` : `${duration.replace(/[^0-9]/g,'')}`;
-    timerDuration = conertTime(time);
+    timerDuration = convertTime(time);
+    Object.keys(timerDuration).forEach((el,i) => document.getElementsByClassName('time')[i].innerHTML = timerDuration[el]);
     })
 
 });
