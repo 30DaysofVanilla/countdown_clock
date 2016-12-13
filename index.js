@@ -2,8 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const button = document.getElementById('startTimer');
   const stopButton = document.getElementById('stopTimer');
   const timer = document.getElementById('timer');
-  const form = document.getElementById('timerForm');
-  const input = document.getElementById('timerInput');
   let timerDuration;
 
   function padWithZeroes(num){
